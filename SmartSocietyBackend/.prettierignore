@@ -1,0 +1,22 @@
+# Dependencies
+node_modules
+
+# Build files
+build
+dist
+web-build
+
+# Expo
+.expo
+.expo-shared
+
+# Environment files
+.env
+.env.*
+
+# Logs
+npm-debug.log
+yarn-error.log
+
+# Minified files
+*.min.js
