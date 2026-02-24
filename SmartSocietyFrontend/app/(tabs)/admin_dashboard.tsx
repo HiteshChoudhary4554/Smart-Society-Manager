@@ -5,7 +5,7 @@ import Header from "../../components/Header";
 export default function AdminDashboard() {
   return (
     <ScrollView className="bg-[#f5f5f5] w-full h-full">
-      {/* container */}
+      {/* container */} 
       <View className="px-5 py-5">
         {/* Admin  */}
         <View className="rounded-2xl shadow-sm border bg-gray-100 border-gray-100 px-5 py-5 mt-4">
