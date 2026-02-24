@@ -24,7 +24,7 @@ export default function CreateSociety() {
 
       {/* ================= HEADER ================= */}
 
-      <Text className="text-2xl font-bold text-center mb-25 mt-15">Create New Society</Text>  
+      <Text className="text-2xl font-bold text-center my-10 mb-25 mt-15">Create New Society</Text>  
 
       {/* ================= PART 1 : SOCIETY ================= */}
 
@@ -386,10 +386,10 @@ export default function CreateSociety() {
       </TouchableOpacity>
 
       <TouchableOpacity
-        className="text-[#fff] text-3xl font-bold w-full items-center"
+        className="text-[#fff] text-3xl font-bold mb-5 w-full items-center"
         onPress={() => router.back()}
       >
-        <Text className="mt-[15] items-center text-lg text-[#918888]">
+        <Text className="mt-[15] mb-4 items-center text-lg text-[#918888]">
           Back
         </Text>
       </TouchableOpacity>
