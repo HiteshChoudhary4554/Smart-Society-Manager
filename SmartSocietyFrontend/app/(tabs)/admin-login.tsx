@@ -1,126 +1,106 @@
-import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
-import { router } from 'expo-router';
+import { form_Error } from "@/constants/form-error";
+import { router } from "expo-router";
+import { Controller, useForm } from "react-hook-form";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function AdminLogin() {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const loginHandler = () => {
-
-    if (!email || !password) {
-      alert('Please fill all fields');
-      return;
-    }
-
-    const data = {
-      email,
-      password,
-      role: 'admin',
-    };
-
-    console.log('Admin Login:', data);
-
-    // Yaha baad me API connect karenge
+  const onSubmit = (data: any) => {
+    console.log(data);
   };
-
   return (
+    <View className="bg-[#f5f5f5] h-full flex-1 justify-center items-center p-[20]">
+      <Text className="text-2xl font-bold text-center mb-[25]">
+        Admin Login
+      </Text>
 
-    <View style={styles.container}>
+      {/* {email} */}
 
-      <Text style={styles.header}>Admin Login</Text>
-
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        keyboardType="email-address"
-        value={email}
-        onChangeText={setEmail}
+      <Controller
+        control={control}
+        name="email"
+        rules={{
+          required: form_Error.email.required,
+          pattern: {
+            value: /^\S+@\S+$/i,
+            message: form_Error.email.pattern,
+          },
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="Email"
+          />
+        )}
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
+      {errors.email && (
+        <Text className="text-red-500">
+          {typeof errors.email.message === "string" ? errors.email.message : ""}
+        </Text>
+      )}
+
+      {/* {password} */}
+
+      <Controller
+        control={control}
+        name="password"
+        rules={{
+          required: form_Error.password.required,
+          minLength: {
+            value: 6,
+            message: form_Error.password.minLength,
+          },
+          maxLength: {
+            value: 10,
+            message: form_Error.password.maxLength,
+          },
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] mt-[2] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            secureTextEntry
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="Password"
+          />
+        )}
       />
+
+      {errors.password && (
+        <Text className="text-red-500">
+          {typeof errors.password.message === "string"
+            ? errors.password.message
+            : ""}
+        </Text>
+      )}
+
+      {/*submit button*/}
 
       <TouchableOpacity
-        style={styles.button}
-        onPress={loginHandler}
+        onPress={handleSubmit(onSubmit)}
+        className="bg-[#4CAF50] p-[10] rounded items-center mt-4 w-full"
       >
-        <Text style={styles.buttonText}>Login</Text>
+        <Text className="text-[#fff] text-lg font-bold">Login</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.backBtn}
+        className="text-[#fff] text-3xl font-bold"
         onPress={() => router.back()}
       >
-        <Text style={styles.backText}>Back</Text>
+        <Text className="mt-[15] items-center text-lg text-[#918888]">
+          Back
+        </Text>
       </TouchableOpacity>
-
     </View>
   );
 }
-
-
-/* ================= STYLES ================= */
-
-const styles = StyleSheet.create({
-
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-    justifyContent: 'center',
-    padding: 20,
-  },
-
-  header: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 25,
-  },
-
-  input: {
-    backgroundColor: '#fff',
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 15,
-    borderWidth: 1,
-    borderColor: '#ddd',
-  },
-
-  button: {
-    backgroundColor: '#4CAF50',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 10,
-  },
-
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-
-  backBtn: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-
-  backText: {
-    color: '#555',
-    fontSize: 16,
-  },
-
-});

@@ -1,265 +1,399 @@
-import React, { useState } from 'react';
+import { form_Error } from "@/constants/form-error";
+import { Controller, useForm } from "react-hook-form";
 import {
-  View,
   Text,
   TextInput,
   TouchableOpacity,
   ScrollView,
-  StyleSheet,
-} from 'react-native';
-import { router } from 'expo-router';
+} from "react-native";
+import { router } from "expo-router";
 
 export default function CreateSociety() {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
 
-  /* ================= USER / ADMIN ================= */
-
-  const [fullName, setFullName] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
-  const [bio, setBio] = useState('');
-
-  /* ================= SOCIETY ================= */
-
-  const [name, setName] = useState('');
-  const [code, setCode] = useState('');
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [pincode, setPincode] = useState('');
-  const [description, setDescription] = useState('');
-
-  /* ================= SUBMIT ================= */
-
-  const submitHandler = () => {
-
-    const data = {
-
-      user: {
-        fullname: fullName,
-        username,
-        email,
-        phone,
-        password,
-        role: 'admin',
-        bio,
-      },
-
-      society: {
-        name,
-        code,
-        address,
-        city,
-        state,
-        pincode,
-        description,
-      },
-    };
-
-    console.log('Form Data:', data);
-
-    // API call yaha karega later
+  const onSubmit = (data: any) => {
+    console.log(data);
   };
-
+  
   return (
-
-    <ScrollView style={styles.container}>
+    <ScrollView className="flex-1 bg-[#f5f5f5] p-[20]">
 
       {/* ================= HEADER ================= */}
 
-      <Text style={styles.header}>Create New Society</Text>
+      <Text className="text-2xl font-bold text-center mb-25 mt-15">Create New Society</Text>  
 
       {/* ================= PART 1 : SOCIETY ================= */}
 
-      <Text style={styles.sectionTitle}>Society Details</Text>
+      <Text className="text-2xl font-semibold mb-2 mx-15 color-[#333]">Society Details</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Society Name"
-        value={name}
-        onChangeText={setName}
+      {/* {societyName} */}
+
+      <Controller
+        control={control}
+        name="societyName"
+        rules={{
+          required: "required",
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="Society Name"
+          />
+        )}
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Society Code"
-        value={code}
-        onChangeText={setCode}
+      {errors.societyName && (
+        <Text className="text-red-500">
+          {typeof errors.societyName.message === "string" ? errors.societyName.message : ""}
+        </Text>
+      )}
+
+      {/* societyCode */}
+
+      <Controller
+        control={control}
+        name="societyCode"
+        rules={{
+          required: "required",
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="Society Code"
+          />
+        )}
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Address"
-        value={address}
-        onChangeText={setAddress}
+      {errors.societyCode && (
+        <Text className="text-red-500">
+          {typeof errors.societyCode.message === "string" ? errors.societyCode.message : ""}
+        </Text>
+      )}
+      
+      {/* Address Details */}
+
+      <Controller
+        control={control}
+        name="address"
+        rules={{
+          required: "required",
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="Address"
+          />
+        )}
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="City"
-        value={city}
-        onChangeText={setCity}
+      {errors.address && (
+        <Text className="text-red-500">
+          {typeof errors.address.message === "string" ? errors.address.message : ""}
+        </Text>
+      )}
+
+      {/* city */}
+
+      <Controller
+        control={control}
+        name="city"
+        rules={{
+          required: "required",
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="City"
+          />
+        )}
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="State"
-        value={state}
-        onChangeText={setState}
+      {errors.city && (
+        <Text className="text-red-500">
+          {typeof errors.city.message === "string" ? errors.city.message : ""}
+        </Text>
+      )}
+    
+    {/* State  */}
+
+      <Controller
+        control={control}
+        name="state"
+        rules={{
+          required: "required",
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="State"
+          />
+        )}
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Pincode"
-        keyboardType="number-pad"
-        value={pincode}
-        onChangeText={setPincode}
+      {errors.state && (
+        <Text className="text-red-500">
+          {typeof errors.state.message === "string" ? errors.state.message : ""}
+        </Text>
+      )}  
+
+      {/* Pincode  */}
+
+      <Controller
+        control={control}
+        name="pincode"
+        rules={{
+          required: "required",
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="Pincode"
+          />
+        )}
       />
 
-      <TextInput
-        style={[styles.input, styles.textArea]}
-        placeholder="Society Description"
-        value={description}
-        onChangeText={setDescription}
-        multiline
+      {errors.pincode && (
+        <Text className="text-red-500">
+          {typeof errors.pincode.message === "string" ? errors.pincode.message : ""}
+        </Text>
+      )}      
+
+      {/* societyDescription  */}
+
+      <Controller
+        control={control}
+        name="societyDescription"
+        rules={{
+          required: "required",
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="Society Description"
+          />
+        )}
       />
 
+      {errors.societyDescription && (
+        <Text className="text-red-500">
+          {typeof errors.societyDescription.message === "string" ? errors.societyDescription.message : ""}
+        </Text>
+      )}
 
-        {/* ================= PART 2 : ADMIN ================= */}
+      {/* ================= PART 2 : ADMIN ================= */}
 
-      <Text style={styles.sectionTitle}>Admin Details</Text>
+      <Text className="text-2xl mb-2 font-semibold mx-15 color-[#333]">Admin Details</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Full Name"
-        value={fullName}
-        onChangeText={setFullName}
+      {/* fullName  */}
+
+      <Controller
+        control={control}
+        name="fullName"
+        rules={{
+          required: "required",
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="Full Name"
+          />
+        )}
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        value={username}
-        onChangeText={setUsername}
+      {errors.fullName && (
+        <Text className="text-red-500">
+          {typeof errors.fullName.message === "string" ? errors.fullName.message : ""}
+        </Text>
+      )}
+
+    {/* Username  */}
+
+      <Controller
+        control={control}
+        name="username"
+        rules={{
+          required: "required",
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="Username"
+          />
+        )}
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        keyboardType="email-address"
-        value={email}
-        onChangeText={setEmail}
+      {errors.username && (
+        <Text className="text-red-500">
+          {typeof errors.username.message === "string" ? errors.username.message : ""}
+        </Text>
+      )}
+
+      {/* {email} */}
+
+      <Controller
+        control={control}
+        name="email"
+        rules={{
+          required: form_Error.email.required,
+          pattern: {
+            value: /^\S+@\S+$/i,
+            message: form_Error.email.pattern,
+          },
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="Email"
+          />
+        )}
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Phone"
-        keyboardType="number-pad"
-        value={phone}
-        onChangeText={setPhone}
+      {errors.email && (
+        <Text className="text-red-500">
+          {typeof errors.email.message === "string" ? errors.email.message : ""}
+        </Text>
+      )}
+
+      {/* Phone Number */}
+
+      <Controller
+        control={control}
+        name="phone"
+        rules={{
+          required: "required",
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="Phone Number"
+          />
+        )}
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
+      {errors.phone && (
+        <Text className="text-red-500">
+          {typeof errors.phone.message === "string" ? errors.phone.message : ""}
+        </Text>
+      )}
+
+      {/* {password} */}
+
+      <Controller
+        control={control}
+        name="password"
+        rules={{
+          required: form_Error.password.required,
+          minLength: {
+            value: 6,
+            message: form_Error.password.minLength,
+          },
+          maxLength: {
+            value: 10,
+            message: form_Error.password.maxLength,
+          },
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] mt-[2] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            secureTextEntry
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="Password"
+          />
+        )}
       />
 
-      <TextInput
-        style={[styles.input, styles.textArea]}
-        placeholder="Bio (Optional)"
-        value={bio}
-        onChangeText={setBio}
-        multiline
+      {errors.password && (
+        <Text className="text-red-500">
+          {typeof errors.password.message === "string"
+            ? errors.password.message
+            : ""}
+        </Text>
+      )}
+  
+      {/* bio  */}
+
+      <Controller
+        control={control}
+        name="bio"
+        rules={{
+          required: "required",
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            className="border border-[#d3d0d0] rounded w-full p-[12] mb-[18] bg-[#fff] pl-2"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            value={value}
+            placeholder="Bio"
+          />
+        )}
       />
 
-
+      {errors.bio && (
+        <Text className="text-red-500">
+          {typeof errors.bio.message === "string" ? errors.bio.message : ""}
+        </Text>
+      )}
+  
+      
 
       {/* ================= BUTTON ================= */}
 
       <TouchableOpacity
-        style={styles.button}
-        onPress={submitHandler}
+        onPress={handleSubmit(onSubmit)}
+        className="bg-[#4CAF50] p-[10] rounded items-center mt-4 w-full"
       >
-        <Text style={styles.buttonText}>Create Society</Text>
+        <Text className="text-[#fff] text-lg font-bold">Login</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.backBtn}
+        className="text-[#fff] text-3xl font-bold w-full items-center"
         onPress={() => router.back()}
       >
-        <Text style={styles.backText}>Back</Text>
+        <Text className="mt-[15] items-center text-lg text-[#918888]">
+          Back
+        </Text>
       </TouchableOpacity>
 
     </ScrollView>
   );
 }
-
-
-/* ================= STYLES ================= */
-
-const styles = StyleSheet.create({
-
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-    padding: 20,
-  },
-
-  header: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 25,
-    marginTop: 15,
-  },
-
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    marginVertical: 15,
-    color: '#333',
-  },
-
-  input: {
-    backgroundColor: '#fff',
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 12,
-    borderWidth: 1,
-    borderColor: '#ddd',
-  },
-
-  textArea: {
-    height: 80,
-    textAlignVertical: 'top',
-  },
-
-  button: {
-    backgroundColor: '#4CAF50',
-    padding: 15,
-    borderRadius: 10,
-    marginTop: 20,
-    alignItems: 'center',
-  },
-
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-
-  backBtn: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-
-  backText: {
-    color: '#555',
-    fontSize: 16,
-  },
-
-});
