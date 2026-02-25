@@ -2,7 +2,10 @@ import DashboardCards from "@/components/DashboardCard";
 import { Ionicons } from "@expo/vector-icons";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Header from "../../components/Header";
+import { useRouter } from "expo-router";
+
 export default function AdminDashboard() {
+  const router = useRouter();
   return (
     <ScrollView className="bg-[#f5f5f5] w-full h-full">
       {/* container */}
@@ -39,7 +42,9 @@ export default function AdminDashboard() {
             <View className="h-[1px] bg-gray-100 mb-3" />
 
             {/* Content Row */}
-            <TouchableOpacity className="flex-row items-center">
+            <TouchableOpacity
+              onPress={() => router.push('/Admin feat/MemberScreen')}
+             className="flex-row items-center">
               {/* Avatar */}
               <View className="bg-green-100 w-10 h-10 rounded-full items-center justify-center mr-3">
                 <Ionicons name="person" size={18} color="#16A34A" />
