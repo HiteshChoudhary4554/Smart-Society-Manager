@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import { Ionicons } from "@expo/vector-icons";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 export default function MemberDashboard() {
   return (
@@ -26,11 +26,13 @@ export default function MemberDashboard() {
                   Home
                 </Text>
               </View>
-              <Text className="text-blue-600 font-medium">View All</Text>
+              <TouchableOpacity>
+                <Text className="text-blue-600 font-medium">View All</Text>
+              </TouchableOpacity>
             </View>
             <View className="h-[1px] bg-gray-100 mb-3" />
             {/* Content */}
-            <View className="flex-row items-center">
+            <TouchableOpacity className="flex-row items-center">
               <View className="bg-green-100 w-10 h-10 rounded-full items-center justify-center mr-3">
                 <Ionicons name="person" size={18} color="#16A34A" />
               </View>
@@ -49,7 +51,7 @@ export default function MemberDashboard() {
               <View className="bg-green-100 p-2 rounded-xl">
                 <Ionicons name="speedometer" size={22} color="#16A34A" />
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
 
           {/* Event  */}
@@ -64,11 +66,13 @@ export default function MemberDashboard() {
                   Events
                 </Text>
               </View>
-              <Text className="text-blue-600 font-medium">View All</Text>
+              <TouchableOpacity>
+                <Text className="text-blue-600 font-medium">View All</Text>
+              </TouchableOpacity>
             </View>
             <View className="h-[1px] bg-gray-100 mb-3" />
             {/* Content */}
-            <View className="flex-row items-center">
+            <TouchableOpacity className="flex-row items-center">
               <View className="bg-blue-100 w-10 h-10 rounded-full items-center justify-center mr-3">
                 <Ionicons name="time" size={18} color="#2563EB" />
               </View>
@@ -84,7 +88,7 @@ export default function MemberDashboard() {
               <View className="bg-blue-100 p-2 rounded-xl">
                 <Ionicons name="calendar-outline" size={22} color="#2563EB" />
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
 
           {/* payment  */}
@@ -100,13 +104,15 @@ export default function MemberDashboard() {
                 </Text>
               </View>
 
-              <Text className="text-blue-600 font-medium">View All</Text>
+              <TouchableOpacity>
+                <Text className="text-blue-600 font-medium">View All</Text>
+              </TouchableOpacity>
             </View>
 
             <View className="h-[1px] bg-gray-100 mb-3" />
 
             {/* Content */}
-            <View className="flex-row items-center">
+            <TouchableOpacity className="flex-row items-center">
               <View className="bg-blue-100 w-10 h-10 rounded-full items-center justify-center mr-3">
                 <Ionicons name="cash" size={18} color="#2563EB" />
               </View>
@@ -127,7 +133,7 @@ export default function MemberDashboard() {
               <View className="bg-green-100 p-2 rounded-xl">
                 <Ionicons name="card" size={22} color="#16A34A" />
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
 
           {/* Complaints */}
@@ -148,13 +154,15 @@ export default function MemberDashboard() {
                 </Text>
               </View>
 
-              <Text className="text-blue-600 font-medium">View All</Text>
+              <TouchableOpacity>
+                <Text className="text-blue-600 font-medium">View All</Text>
+              </TouchableOpacity>
             </View>
 
             <View className="h-[1px] bg-gray-100 mb-3" />
 
             {/* Content */}
-            <View className="flex-row items-center">
+            <TouchableOpacity className="flex-row items-center">
               <View className="bg-red-100 w-10 h-10 rounded-full items-center justify-center mr-3">
                 <Ionicons name="person" size={18} color="#DC2626" />
               </View>
@@ -173,7 +181,7 @@ export default function MemberDashboard() {
               <View className="bg-orange-100 p-2 rounded-xl">
                 <Ionicons name="document-text" size={22} color="#EA580C" />
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
 
           {/* Notices */}
@@ -189,14 +197,15 @@ export default function MemberDashboard() {
                   Notices
                 </Text>
               </View>
-
-              <Text className="text-blue-600 font-medium">View All</Text>
+              <TouchableOpacity>
+                <Text className="text-blue-600 font-medium">View All</Text>
+              </TouchableOpacity>
             </View>
 
             <View className="h-[1px] bg-gray-100 mb-3" />
 
             {/* Content */}
-            <View className="flex-row items-center">
+            <TouchableOpacity className="flex-row items-center">
               <View className="bg-orange-100 w-10 h-10 rounded-full items-center justify-center mr-3">
                 <Ionicons name="notifications" size={18} color="#EA580C" />
               </View>
@@ -215,7 +224,7 @@ export default function MemberDashboard() {
               <View className="bg-red-100 p-2 rounded-xl">
                 <Ionicons name="mail" size={22} color="#DC2626" />
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
         {/* end */}
